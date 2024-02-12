@@ -128,16 +128,6 @@ Execute() {
     printf "\n"
 }
 
-GenCert() {
-    if [[ "" == "$1" ]]
-    then
-        Error "Please provide a virtual host name."
-        exit 1
-    fi
-
-    Execute "./gencert.sh $1"
-}
-
 Connect() {
     CheckProxyUpAndRunning
 
@@ -152,13 +142,6 @@ Connect() {
     printf "Connecting to \e[1;33m%s\e[0m network ... " "${NETWORK}"
 
     docker network connect "${NETWORK}" traefik >> ${LOG_PATH} 2>&1
-    if [[ $? -ne 0 ]]
-    then
-        Error 'error'
-        exit 1
-    fi
-
-    docker network connect ${NETWORK} proxy_generator >> ${LOG_PATH} 2>&1
     if [[ $? -ne 0 ]]
     then
         Error 'error'
