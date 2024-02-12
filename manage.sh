@@ -66,7 +66,7 @@ IsUpAndRunning() {
 }
 
 CheckProxyUpAndRunning() {
-    if ! IsUpAndRunning proxy_nginx
+    if ! IsUpAndRunning traefik
     then
         Error "Proxy is not up and running."
         exit 1
