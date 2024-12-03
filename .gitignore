@@ -1,2 +1,4 @@
 /.env
 /docker_logs.txt
+/letsencrypt
+!/letsencrypt/.gitkeep

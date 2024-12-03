@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   traefik:
-    image: "traefik:v2.10"
+    image: "traefik:${TRAEFIK_VERSION}"
     container_name: "traefik"
     command:
       - "--api.insecure=true"
