@@ -89,7 +89,7 @@ ComposeUp() {
     fi
 
     printf "Composing \e[1;33mup\e[0m ... "
-    docker-compose up -d >> ${LOG_PATH} 2>&1
+    docker compose up -d >> ${LOG_PATH} 2>&1
     DoneOrError $?
 
     if [[ -f ./networks.list ]]
@@ -108,7 +108,7 @@ ComposeUp() {
 
 ComposeDown() {
     printf "Composing \e[1;33mdown\e[0m ... "
-    docker-compose down -v --remove-orphans >> ${LOG_PATH} 2>&1
+    docker compose down -v --remove-orphans >> ${LOG_PATH} 2>&1
     DoneOrError $?
 }
 
@@ -118,13 +118,9 @@ Execute() {
     printf "Executing %s\n" "$1"
 
     printf "\n"
-    # shellcheck disable=SC1001
-    if [[ "$(uname -s)" = \MINGW* ]]
-    then
-        winpty docker exec -it traefik $1
-    else
-        docker exec -it traefik $1
-    fi
+
+    docker exec -it traefik $1
+
     printf "\n"
 }
 
