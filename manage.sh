@@ -88,8 +88,11 @@ ComposeUp() {
         exit 1
     fi
 
+    OPT=""
+    if [[ $2 == 'up' ]]; then $OPT=" -f docker-compose.ui.yaml"; fi
+
     printf "Composing \e[1;33mup\e[0m ... "
-    docker compose up -d >> ${LOG_PATH} 2>&1
+    docker compose ${OPT} up -d >> ${LOG_PATH} 2>&1
     DoneOrError $?
 
     if [[ -f ./networks.list ]]
