@@ -89,7 +89,7 @@ ComposeUp() {
     fi
 
     OPT=""
-    if [[ $2 == 'up' ]]; then $OPT=" -f docker-compose.ui.yaml"; fi
+    if [[ $1 == 'ui' ]]; then OPT=' -f docker-compose.ui.yaml'; fi
 
     printf "Composing \e[1;33mup\e[0m ... "
     docker compose ${OPT} up -d >> ${LOG_PATH} 2>&1
@@ -179,13 +179,13 @@ Reset() {
 
 case $1 in
     up)
-        ComposeUp
+        ComposeUp ${*:2}
     ;;
     down)
         ComposeDown
     ;;
     connect)
-        Connect "$2"
+        Connect ${*:2}
     ;;
     restart)
         if ! IsUpAndRunning traefik
