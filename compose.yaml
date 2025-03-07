@@ -1,0 +1,17 @@
+networks:
+  proxy:
+    name: proxy
+    external: true
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:${TRAEFIK_VERSION}
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./traefik:/etc/traefik:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro

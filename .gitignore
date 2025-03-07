@@ -1,4 +1,8 @@
+/.idea
 /.env
-/docker_logs.txt
-/letsencrypt
-!/letsencrypt/.gitkeep
+/log
+!/log/.gitkeep
+/traefik
+!/traefik/certs/.gitkeep
+!/traefik/letsencrypt/.gitkeep
+/networks.list

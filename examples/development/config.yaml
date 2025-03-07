@@ -1,0 +1,18 @@
+tls:
+  certificates:
+    - certFile: "/etc/traefik/certs/docker.local.cert.pem"
+      keyFile: "/etc/traefik/certs/docker.local.key.pem"
+
+http:
+  routers:
+    traefik:
+      rule: "Host(`traefik.docker.local`)"
+      service: "api@internal"
+      tls: true
+      middlewares:
+        - auth
+
+  middlewares:
+    auth:
+      basicAuth:
+        usersFile: /etc/traefik/config/.htpasswd
