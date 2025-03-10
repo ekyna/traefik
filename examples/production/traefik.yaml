@@ -2,10 +2,10 @@ log:
   level: ERROR
   format: common
 
-certificatesresolvers:
+certificatesResolvers:
   letsencrypt:
     acme:
-      tlschallenge: true
+      tlsChallenge: true
       email: letsencrypt@example.org
       storage: /etc/traefik/letsencrypt/acme.json
 
@@ -26,7 +26,7 @@ entryPoints:
 
 providers:
   file:
-    filname: /etc/traefik/config.yaml
+    filename: /etc/traefik/config.yaml
     watch: true
   docker:
     endpoint: 'unix:///var/run/docker.sock'
