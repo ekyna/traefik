@@ -3,7 +3,7 @@ log:
   format: common
 
 certificatesResolvers:
-  letsencrypt:
+  letsEncrypt:
     acme:
       tlsChallenge: true
       email: letsencrypt@example.org
@@ -22,7 +22,7 @@ entryPoints:
     asDefault: true
     http:
       tls:
-        certresolver: letsencrypt
+        certResolver: letsEncrypt
 
 providers:
   file:

@@ -138,11 +138,11 @@ case $1 in
         docker restart traefik
     ;;
     *)
-        printf "\e[2mUsage:  ./manage.sh [action] [options]
+        printf "\e[2mUsage:  ./manage.sh [action]
 
-  \e[0mup\e[2m             Create and start containers for the [env] environment.
-  \e[0mdown\e[2m           Stop and remove containers for the [env] environment.
-  \e[0mrestart\e[2m        Restart nginx container.
+  \e[0mup\e[2m         Create and start containers.
+  \e[0mdown\e[2m       Stop and remove containers.
+  \e[0mrestart\e[2m    Restart traekif container.
 
 \e[0m"
     ;;
