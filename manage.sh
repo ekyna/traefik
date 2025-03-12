@@ -75,38 +75,12 @@ IsUpAndRunning() {
     return 1
 }
 
-NetworkExists() {
-    if docker network ls --format '{{.Name}}' | grep -q "$1\$"
-    then
-        return 0
-    fi
-    return 1
-}
-
-NetworkCreate() {
-    printf "Creating network \e[1;33m%s\e[0m ... " "$1"
-    if ! NetworkExists "$1"
-    then
-        if ! docker network create "$1" >> "${LOG_PATH}" 2>&1
-        then
-            Error "error"
-            exit 1
-        fi
-
-        Success "created"
-    else
-        Comment "exists"
-    fi
-}
-
 ComposeUp() {
     if IsUpAndRunning traefik
     then
         Error "Already up and running."
         exit 1
     fi
-
-    NetworkCreate "proxy"
 
     printf "Composing \e[1;33mup\e[0m ... "
     docker compose ${COMPOSE_OPT} up -d >> ${LOG_PATH} 2>&1

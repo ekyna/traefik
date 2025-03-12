@@ -1,7 +1,7 @@
 networks:
   proxy:
     name: proxy
-    external: true
+    attachable: true
 
 services:
   traefik:
