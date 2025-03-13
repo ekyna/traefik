@@ -55,7 +55,6 @@ Any container to expose through Traefik can use the following labels:
             labels:
                 - "traefik.enable=true"
                 - "traefik.http.routers.example.rule=Host(`example.docker.local`)"
-                - "traefik.http.routers.example.tls=true"
 
 ## Resources
 

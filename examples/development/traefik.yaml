@@ -3,7 +3,7 @@ global:
 
 accesslog: true
 log:
-  level: INFO
+  level: DEBUG
   format: common
 
 api:
@@ -20,6 +20,8 @@ entryPoints:
   websecure:
     address: ':443'
     asDefault: true
+    http:
+      tls: true
 
 providers:
   file:
