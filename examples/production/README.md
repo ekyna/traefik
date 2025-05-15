@@ -13,13 +13,19 @@ Copy examples configuration files into _traefik_ folder.
 
 Any container to expose through Traefik can use the following labels:
 
+    networks:
+        proxy:
+            name: proxy
+            attachable: true
+
     services:
         web:
             image: nginx
             # ...
             labels:
                 - "traefik.enable=true"
-                - "traefik.http.routers.example.rule=Host(`example.org`) || Host(`www.example.org`)"
-                - "traefik.http.routers.example.tls=true"
-                # Optionnal www to non-www redirection
-                - "traefik.http.middlewares.wwwredirect=true"
+                - "traefik.docker.network=proxy"
+                - "traefik.http.routers.example.rule=Host(`example.org`)"
+            networks:
+                - default
+                - proxy

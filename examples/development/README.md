@@ -48,14 +48,26 @@ Put credentials into traefik/config/.htpasswd.
 
 Any container to expose through Traefik can use the following labels:
 
+    networks:
+        proxy:
+            name: proxy
+            attachable: true
+
     services:
         web:
             image: nginx
             # ...
             labels:
                 - "traefik.enable=true"
+                - "traefik.docker.network=proxy"
                 - "traefik.http.routers.example.rule=Host(`example.docker.local`)"
+            networks:
+                - default
+                - proxy
+
+Don't forget to add ```example.docker.local``` to your _hosts_ file.
 
 ## Resources
 
+* [Traefik documentation](https://doc.traefik.io/traefik/routing/providers/docker/)
 * [Traefik v2 HTTPS (SSL) en localhost](https://zestedesavoir.com/billets/3355/traefik-v2-https-ssl-en-localhost/)
